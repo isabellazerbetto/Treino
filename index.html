@@ -5,33 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Treino">
-<meta name="theme-color" content="#e4572e">
+<meta name="theme-color" content="#0b0d12">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🏃%3C/text%3E%3C/svg%3E">
 <title>Meu plano de treino</title>
 <style>
   :root {
-    box-sizing: border-box;
+    box-sizing: border-box; color-scheme: dark;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    --bg: #f6f5f1; --card: #ffffff; --text: #1d1d1b; --muted: #6b6a66; --line: #e4e2db;
-    --accent: #e4572e; --accent-lt: #ffc2ad; --accent-soft: #fde8e0;
-    --str: #3b5bdb; --str-soft: #e7ecff;
-    --run: #e4572e; --run-soft: #fde8e0;
-    --mob: #2b9a66; --mob-soft: #e0f5ea;
-    --neutral-soft: #efeee9;
-    --gold: #f2b01e;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #141413; --card: #1e1e1c; --text: #f2f1ec; --muted: #9c9a93; --line: #333330;
-      --accent-soft: #3a211a; --accent-lt: #7a3a28; --str: #7b97ff; --str-soft: #1f2644; --run: #ff8a65; --run-soft: #3a211a;
-      --mob: #4cc790; --mob-soft: #173326; --neutral-soft: #262624;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #141413; --card: #1e1e1c; --text: #f2f1ec; --muted: #9c9a93; --line: #333330;
-    --accent-soft: #3a211a; --accent-lt: #7a3a28; --str: #7b97ff; --str-soft: #1f2644; --run: #ff8a65; --run-soft: #3a211a;
-    --mob: #4cc790; --mob-soft: #173326; --neutral-soft: #262624;
+    --bg: #0b0d12; --card: #151922; --text: #eef0f6; --muted: #8d95a8; --line: #262c3b;
+    --accent: #ff6b3d; --accent-lt: #b8431f; --accent-soft: rgba(255,107,61,.14);
+    --str: #7b97ff; --str-soft: rgba(123,151,255,.14);
+    --run: #ff8a65; --run-soft: rgba(255,138,101,.14);
+    --mob: #3ecf8e; --mob-soft: rgba(62,207,142,.14);
+    --neutral-soft: #1d2230; --gold: #f2b01e;
   }
   *, *::before, *::after { box-sizing: inherit; }
   html { scroll-padding-top: env(safe-area-inset-top, 0px); }
@@ -154,10 +143,32 @@
     transition: transform .3s ease; max-width: calc(100% - 32px); text-align: center;
   }
   .toast.show { transform: translate(-50%, 0); }
+  /* ---- refinamentos dark ---- */
+  body { background: radial-gradient(900px 420px at 50% -80px, #1f2740 0, transparent 70%) no-repeat, var(--bg); min-height: 100vh; }
+  .top { padding: 18px 2px 0; }
+  .top small { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .top h1 { margin: 2px 0 0; font-size: 28px; letter-spacing: -0.03em; }
+  .car { margin-top: 14px; }
+  .hero { background: linear-gradient(160deg, #1d2336 0%, #141824 70%); border-color: #2a3145; box-shadow: 0 12px 32px rgba(0,0,0,.45); }
+  .rank-emoji { filter: drop-shadow(0 0 10px rgba(255,107,61,.45)); }
+  .big-bar { height: 14px; background: #0c0f16; box-shadow: inset 0 1px 3px rgba(0,0,0,.6); }
+  .big-bar i { background: linear-gradient(90deg, #b8431f, #ff7a45); box-shadow: 0 0 14px rgba(255,107,61,.55); }
+  .goal { background: #fff; opacity: .9; }
+  nav { background: rgba(11,13,18,.88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .tab { background: var(--card); border-color: var(--line); }
+  .tab[aria-selected="true"] { background: linear-gradient(135deg, #ff7a45, #ff5a2a); border-color: transparent; color: #fff; box-shadow: 0 4px 14px rgba(255,107,61,.35); }
+  .tab[aria-selected="true"] small { color: #fff; }
+  .tab[aria-selected="true"].done b::after { color: #fff; }
+  .block { background: var(--card); box-shadow: 0 6px 20px rgba(0,0,0,.28); }
+  .box { border-color: #3a4256; background: #0f121a; }
+  .item input:checked + .box { box-shadow: 0 0 10px rgba(62,207,142,.45); }
+  .badge { color: #0b0d12; } .badge.str { background: var(--str); } .badge.run { background: var(--run); } .badge.mob { background: var(--mob); }
+  .note { background: var(--neutral-soft); border: 1px solid var(--line); }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <header class="top"><small>Plano semanal</small><h1>Meu treino</h1></header>
   <section class="car" aria-label="Desempenho da semana">
     <div class="slides" id="slides">
       <div class="hero" id="s1">
@@ -201,8 +212,8 @@ const I = (t, o) => Object.assign({ t }, o || {});
 const W_ = (label, time, items) => ({ k: "w", label, time, items });
 const C_ = (time, items) => ({ k: "c", label: "Volta à calma", time, items });
 
-const PLAN = [
-  { n: 1, title: "Musculação (Superiores/Core) + Corrida", min: 70, types: ["str", "run"], blocks: [
+const PLAN0 = [
+  { o: 1, title: "Musculação (Superiores/Core) + Corrida", min: 70, types: ["str", "run"], blocks: [
     W_("Aquecimento", "5 min", [I("Caminhada rápida", { m: "5 min" }), I("Mobilidade de tornozelo, quadril e joelho")]),
     { k: "r", label: "Corrida na esteira", time: "25 min", items: [
       I("Corrida leve", { m: "25 min", s: "Ritmo confortável, inclinação 1%", km: 1 }) ]},
@@ -213,10 +224,12 @@ const PLAN = [
       I("Elevação lateral", { r: "3 × 15", s: "Halteres" }),
       I("Elevação frontal", { r: "3 × 15", i: "n1" }),
       I("Tríceps corda", { r: "4 × 10", i: "n2" }),
-      I("Abdominal", { r: "3 × 15", i: "2.4", nw: 1 }) ]},
+      I("Abdominal", { r: "3 × 15", i: "2.4", nw: 1 }),
+      I("Elevação de pernas (infra)", { r: "3 × 15", i: "n3", nw: 1 }),
+      I("Prancha isométrica", { r: "3 × 45 s", i: "n4", nw: 1 }) ]},
     C_("5 min", [I("Caminhada leve", { m: "5 min" }), I("Alongamento de panturrilhas, quadríceps e posterior de coxa"), I("Respiração profunda")])
   ]},
-  { n: 2, title: "Musculação (Inferiores · Foco Quadríceps) + Mobilidade", min: 60, types: ["str", "mob"], blocks: [
+  { o: 2, title: "Musculação (Inferiores · Foco Quadríceps) + Mobilidade", min: 60, types: ["str", "mob"], blocks: [
     W_("Aquecimento", "3–5 min", [I("Caminhada leve ou bike", { m: "3–5 min" }), I("Mobilidade dinâmica de quadril")]),
     { k: "s", label: "Musculação · Inferiores (Quadríceps/Glúteo)", time: "", items: [
       I("Agachamento", { r: "4 × 10", s: "Barra Smith ou livre" }),
@@ -228,7 +241,7 @@ const PLAN = [
     { k: "m", label: "Alongamento / Mobilidade", time: "15 min", items: [I("Quadril, flexores de coxa, coluna e ombros", { m: "15 min" })] },
     C_("", [I("Alongamento geral"), I("Respiração controlada")])
   ]},
-  { n: 3, title: "Corrida na esteira · Tiros", min: 35, types: ["run"],
+  { o: 3, title: "Corrida na esteira · Tiros", min: 35, types: ["run"],
     note: "Sem musculação. Foco 100% no estímulo cardiovascular e na recuperação muscular dos membros superiores e inferiores.",
     blocks: [
     W_("Aquecimento", "5–8 min", [I("Caminhada rápida", { m: "5–8 min" }), I("2–3 arrancadas curtas", { m: "20–30 s" })]),
@@ -238,7 +251,7 @@ const PLAN = [
       I("Tiro 4", { m: "3 min", w: 2 }), I("Tiro 5", { m: "3 min", w: 2 }), I("Tiro 6", { m: "3 min", w: 2 }) ]},
     C_("5 min", [I("Trote leve / caminhada", { m: "5 min" }), I("Alongamento de panturrilha, isquiotibiais e flexores do quadril")])
   ]},
-  { n: 4, title: "Musculação (Inferiores · Foco Glúteo/Posterior)", min: 60, types: ["str"], blocks: [
+  { o: 4, title: "Musculação (Inferiores · Foco Glúteo/Posterior)", min: 60, types: ["str"], blocks: [
     W_("Aquecimento", "5–10 min", [I("Aquecimento geral", { m: "5–10 min" }), I("Mobilidade de quadril, tornozelo e coluna torácica")]),
     { k: "s", label: "Musculação · Inferiores (Posterior/Glúteo)", time: "", items: [
       I("Elevação pélvica (máquina)", { r: "4 × 10" }),
@@ -250,35 +263,41 @@ const PLAN = [
       I("Panturrilha sentada", { r: "4 × 20", i: "1.4" }) ]},
     C_("", [I("Alongamento leve"), I("Respiração diafragmática")])
   ]},
-  { n: 5, title: "Corrida + Musculação (Superiores/Tanquinho) + Alongamento", min: 45, types: ["run", "str", "mob"], blocks: [
+  { o: 5, title: "Corrida + Musculação (Superiores/Tanquinho) + Alongamento", min: 75, types: ["run", "str", "mob"], blocks: [
     W_("Aquecimento", "5 min", [I("Caminhada rápida", { m: "5 min" }), I("Mobilidade dinâmica de tornozelo e quadril")]),
-    { k: "r", label: "Corrida na esteira", time: "30 min", items: [
-      I("Corrida leve contínua", { m: "30 min", s: "Ritmo regenerativo, preparando para o longão", km: 1 }) ]},
-    { k: "s", label: "Musculação · Braços, ombros & tanquinho", time: "15 min express", items: [
-      I("Pec Deck", { r: "3 × 12" }),
+    { k: "r", label: "Corrida na esteira", time: "15 min", items: [
+      I("Corrida leve contínua", { m: "15 min", s: "Ritmo confortável", km: 1 }) ]},
+    { k: "s", label: "Musculação · Peito, costas, braços, ombros & tanquinho", time: "", items: [
+      I("Pec Deck (peito)", { r: "3 × 12", i: "2.0" }),
+      I("Pec Deck inverso (costas)", { r: "3 × 12", i: "n4", s: "Crucifixo inverso" }),
       I("Desenvolvimento", { r: "3 × 12", i: "n1" }),
       I("Bíceps + tríceps (bi-set na polia)", { r: "3 × 12", i: "2.1" }),
       I("Remada unilateral", { r: "4 × 10", i: "n2" }),
       I("Barra na máquina", { r: "4 × 10", i: "n3" }),
       I("Elevação de pernas (infra)", { r: "3 × 15", i: "2.2", nw: 1 }),
-      I("Prancha isométrica", { r: "3 × 45 s", i: "2.3", nw: 1 }) ]},
-    { k: "m", label: "Alongamento / Mobilidade", time: "15 min", items: [I("Alongamento completo de tronco e pernas", { m: "15 min" })] },
-    C_("5 min", [I("Caminhada leve", { m: "5 min" }), I("Respiração lenta")])
+      I("Prancha isométrica", { r: "3 × 45 s", i: "2.3", nw: 1 }),
+      I("Abdominal oblíquo (bicicleta)", { r: "3 × 15", i: "n5", nw: 1 }) ]},
+    { k: "m", label: "Alongamento / Mobilidade", time: "15 min", items: [I("Alongamento completo de tronco e pernas", { m: "15 min", i: "3.0" })] },
+    C_("5 min", [I("Caminhada leve", { m: "5 min", i: "4.0" }), I("Respiração lenta", { i: "4.1" })])
   ]},
-  { n: 6, title: "Corrida longa no parque", min: 50, types: ["run"],
-    note: "Sem musculação. Pernas descansadas do Dia 5 para performar nos 5 km.",
+  { o: 6, title: "Corrida longa no parque", min: 50, types: ["run"],
+    note: "Sem musculação. Foco nos 5 km no parque.",
     blocks: [
     W_("Aquecimento", "8–10 min", [I("Trote leve / caminhada rápida", { m: "8–10 min" }), I("Mobilidade dinâmica")]),
     { k: "r", label: "Corrida contínua", time: "50 min", items: [I("Corrida contínua", { m: "50 min", s: "Seus 5 km no parque!", km: 1 })] },
     C_("5–10 min", [I("Caminhada", { m: "5–10 min" }), I("Alongamento completo de pernas")])
   ]},
-  { n: 7, title: "Mobilidade e Recuperação", min: 25, types: ["mob"], blocks: [
+  { o: 7, title: "Mobilidade e Recuperação", min: 25, types: ["mob"], blocks: [
     W_("Aquecimento", "3–5 min", [I("Caminhada leve", { m: "3–5 min" })]),
     { k: "m", label: "Mobilidade e alongamento", time: "20 min", items: [
       I("Mobilidade leve e alongamento", { m: "20 min", s: "Cadeia posterior, quadril, coluna torácica e lombar" }) ]},
     C_("", [I("Respiração lenta e relaxamento total")])
   ]}
 ];
+const ORDER = [7, 1, 2, 3, 5, 4, 6];   // ordem na tela (números originais dos treinos)
+const PLAN = ORDER.map(o => PLAN0.find(d => d.o === o));
+PLAN.forEach((d, i) => { d.n = i + 1; });
+const dk = i => "d" + (PLAN[i].o - 1);   // chave estável do progresso do dia
 const TLABEL = { str: "Musculação", run: "Corrida", mob: "Mobilidade" };
 const iid = (bi, it, ii) => it.i || bi + "." + ii;
 
@@ -292,7 +311,7 @@ const GOALXP = Math.ceil(MAXXP * GOAL / 100);
 
 const EX = [];  // exercícios com carga
 PLAN.forEach(d => d.blocks.forEach((b, bi) => b.items.forEach((it, ii) => {
-  if (it.r && !it.nw) EX.push({ k: "d" + d.n + "_" + iid(bi, it, ii), n: it.t + " (Dia " + d.n + ")" });
+  if (it.r && !it.nw) EX.push({ k: "d" + d.o + "_" + iid(bi, it, ii), n: it.t + " (Dia " + d.n + ")" });
 })));
 
 const RANKS = [
@@ -326,10 +345,11 @@ function persist() {
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const num = v => { const n = parseFloat(String(v == null ? "" : v).replace(",", ".")); return isNaN(n) ? null : n; };
 const fmt = n => n.toLocaleString("pt-BR", { maximumFractionDigits: 1 });
-const totalKm = km => Object.keys(km || {}).reduce((a, k) => a + (num(km[k]) || 0), 0);
+const KMKEYS = PLAN.filter(d => d.blocks.some(b => b.items.some(it => it.km))).map(d => "d" + d.o);
+const totalKm = km => Object.keys(km || {}).filter(k => KMKEYS.includes(k)).reduce((a, k) => a + (num(km[k]) || 0), 0);
 const dlabel = h => h.date.slice(8, 10) + "/" + h.date.slice(5, 7);
 function dayStats(di) {
-  const set = new Set(state.done["d" + di] || []);
+  const set = new Set(state.done[dk(di)] || []);
   let xp = 0, c = 0;
   DAYS_ITEMS[di].forEach(x => { if (set.has(x.id)) { xp += x.w; c++; } });
   return { c, total: DAYS_ITEMS[di].length, xp, complete: c === DAYS_ITEMS[di].length };
@@ -443,13 +463,13 @@ function renderTabs(scroll) {
 }
 
 function renderDay() {
-  const i = state.tab, d = PLAN[i], s = dayStats(i), set = new Set(state.done["d" + i] || []);
+  const i = state.tab, d = PLAN[i], s = dayStats(i), set = new Set(state.done[dk(i)] || []);
   const badges = d.types.map(t => '<span class="badge ' + t + '">' + TLABEL[t] + '</span>').join("");
-  const kmRow = '<div class="wrow"><input class="km" inputmode="decimal" placeholder="0" data-d="d' + d.n + '" value="' + esc(state.km["d" + d.n] || "") + '"><span>km corridos</span></div>';
+  const kmRow = '<div class="wrow"><input class="km" inputmode="decimal" placeholder="0" data-d="d' + d.o + '" value="' + esc(state.km["d" + d.o] || "") + '"><span>km corridos</span></div>';
   const blocks = d.blocks.map((b, bi) => {
     const rows = b.items.map((it, ii) => {
       if (it.hdr) return '<div class="item hdr"><div class="txt"><strong>' + esc(it.t) + '</strong><em>' + esc(it.s) + '</em>' + (it.km ? kmRow : "") + '</div></div>';
-      const id = iid(bi, it, ii), k = "d" + d.n + "_" + id;
+      const id = iid(bi, it, ii), k = "d" + d.o + "_" + id;
       const right = it.r ? '<span class="pill">' + esc(it.r) + '</span>' : (it.m ? '<span class="time">' + esc(it.m) + '</span>' : "");
       let extra = "";
       if (it.r && !it.nw) { const p = prevLoad(k);
@@ -477,7 +497,7 @@ function renderDay() {
 }
 
 function onCheck(cb) {
-  const k = "d" + state.tab, before = dayStats(state.tab).complete, w0 = weekStats().pct;
+  const k = dk(state.tab), before = dayStats(state.tab).complete, w0 = weekStats().pct;
   const set = new Set(state.done[k] || []);
   cb.checked ? set.add(cb.dataset.id) : set.delete(cb.dataset.id);
   state.done[k] = Array.from(set);
@@ -502,7 +522,7 @@ $("slides").addEventListener("scroll", () => {
   document.querySelectorAll("#dn i").forEach((d, j) => d.classList.toggle("on", j === i));
 }, { passive: true });
 
-$("resetDay").addEventListener("click", () => { state.done["d" + state.tab] = []; persist(); render(); });
+$("resetDay").addEventListener("click", () => { state.done[dk(state.tab)] = []; persist(); render(); });
 $("resetAll").addEventListener("click", () => {
   const w = weekStats(), km = totalKm(state.km);
   if (w.xp > 0 || km > 0 || Object.keys(state.loads).some(k => num(state.loads[k]) != null)) {
